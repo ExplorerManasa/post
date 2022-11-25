@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		body{
+			background-color:  #ffb88c;
+		}
+		#name{
+				padding: 0.5%;
+				margin: 10% 0% 0% 40%;
+				width: 20%;
+				text-align: center;
+			}
+		#password{
+			  padding: 0.5%;
+				margin: 3% 0% 0% 40%;
+				width: 20%;
+				text-align: center;
+		}
+		#sub{
+			padding: 0.3%;
+			background-color: #E0B0FF;
+			color: whitesmoke;
+			border-color:#E0B0FF ;
+			margin: 3% 0% 0% 43.9% ;
+			width: 10%;
+			font-family: sans-serif;
+			font-style: italic;
+			font-size: 20px;
+
+		}
+		#register{
+			  font-family: sans-serif;
+			  font-size: 40px;
+			  color: #AA336A;
+			  font-style: italic;
+			  margin: 5% 0% 0.5% 35%;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function submit(){
+			var name=document.getElementById("name").value
+			console.log(name)
+			var password=document.getElementById("password").value
+			console.log(password)	
+		
+		fetch("http://localhost:4000/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:name,password:password})
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("registration successfull")
+		})
+		.catch((err)=>{
+			alert(err)
+		})
+	}
+	</script>
+	<p id="register">REGISTRATION FORM</p>
+    <input id="name" placeholder="enter your name" /></br>
+    <input id="password" placeholder="enter password"/></br>
+	<button onclick="submit()" id="sub">Submit</button>
+</body>
+</html>
